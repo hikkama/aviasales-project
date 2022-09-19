@@ -60,7 +60,7 @@
     "prettier": "^2.7.1"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx}": [
+    "src/**/*.{js,jsx,tsx}": [
       "npm run lint",
       "npm run format"
     ]
