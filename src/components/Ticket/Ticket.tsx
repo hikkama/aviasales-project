@@ -1,6 +1,9 @@
 import { FC } from 'react'
 
 import { ITicket } from '../../interfaces/ITicket'
+import { formatDuration, getDestinationTime, getFormulation, getTime } from '../../utils/time'
+
+import styles from './Ticket.module.scss'
 
 interface TicketProps {
   ticket: ITicket
@@ -8,48 +11,42 @@ interface TicketProps {
 
 const Ticket: FC<TicketProps> = ({ ticket }) => {
   const { segments, price, carrier } = ticket
-  const [there, back] = segments
 
-  // const thereDate = new Date(there.date)
-  // const userTimezoneOffset = thereDate.getTimezoneOffset() * 60000
-  // const clearDate = thereDate.getTime() - userTimezoneOffset
-  // console.log(format(clearDate, 'k'))
+  const routes = segments.map((route, i) => {
+    const date = new Date(route.date)
+    const key = `${date.toString()}-${i}`
+
+    return (
+      <div key={key} className={styles.routes__item}>
+        <div className={styles.routes__column}>
+          <div className={styles.routes__caption}>
+            {route.origin} - {route.destination}
+          </div>
+          <div className={styles.routes__value}>
+            {getTime(route.date)} - {getDestinationTime(route.date, route.duration)}
+          </div>
+        </div>
+        <div className={styles.routes__column}>
+          <div className={styles.routes__caption}>в пути</div>
+          <div className={styles.routes__value}>{formatDuration(route.duration)}</div>
+        </div>
+        <div className={styles.routes__column}>
+          <div className={styles.routes__caption}>{getFormulation(route.stops.length)}</div>
+          <div className={styles.routes__value}>{[route.stops.join(', ')]}</div>
+        </div>
+      </div>
+    )
+  })
+
   return (
-    <div className="fligth-card">
-      <div className="card-header">
-        <div className="card-price">{price} ₽</div>
-        <div className="card-aircompany">
-          <img src={`http://pics.avs.io/200/200/${carrier}.png`} alt="aircompany-logo" />
+    <div className={styles['ticket-card']}>
+      <div className={styles['ticket-card__header']}>
+        <div className={styles['ticket-card__price']}>{`${price} ₽`}</div>
+        <div className={styles['ticket-card__aircompany']}>
+          <img src={`https://pics.avs.io/200/200/${carrier}.png`} alt="airlines" />
         </div>
       </div>
-      <div className="card-info">
-        <div className="card-path">
-          <div className="card-title">
-            {there.origin} – {there.destination}
-          </div>
-          <div className="card-desc">
-            {there.date} – {there.duration}
-          </div>
-          <div className="card-title">
-            {back.origin} – {back.destination}
-          </div>
-          <div className="card-desc">
-            {back.date} – {back.duration}
-          </div>
-        </div>
-        <div className="card-time">
-          <div className="card-title">В пути</div>
-          <div className="card-desc">21ч 15м</div>
-          <div className="card-title">В пути</div>
-          <div className="card-desc">13ч 30м</div>
-        </div>
-        <div className="card-change">
-          <div className="card-title">{there.stops.length} пересадки</div>
-          <div className="card-desc">{there.stops.join(', ')}</div>
-          <div className="card-title">{back.stops.length} пересадка</div>
-          <div className="card-desc">{back.stops.join(', ')}</div>
-        </div>
-      </div>
+      <div className={styles.routes}>{routes}</div>
     </div>
   )
 }

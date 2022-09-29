@@ -69,6 +69,7 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  position: relative;
 }
 
 .card-info {
@@ -77,8 +78,13 @@ body {
   padding-right: 50px;
 }
 
-.card-aircompany img {
-  width: 70px;
+.card-aircompany {
+  position: absolute;
+  right: 0;
+
+  img {
+    width: 70px;
+  }
 }
 
 .card-price {
