@@ -9,6 +9,11 @@ interface TicketProps {
 const Ticket: FC<TicketProps> = ({ ticket }) => {
   const { segments, price, carrier } = ticket
   const [there, back] = segments
+
+  // const thereDate = new Date(there.date)
+  // const userTimezoneOffset = thereDate.getTimezoneOffset() * 60000
+  // const clearDate = thereDate.getTime() - userTimezoneOffset
+  // console.log(format(clearDate, 'k'))
   return (
     <div className="fligth-card">
       <div className="card-header">

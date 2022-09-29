@@ -3,8 +3,17 @@ import Filter from './components/Filter'
 import { ITicket } from './interfaces/ITicket'
 import TicketList from './components/TicketList'
 
+/*
+ * Todo
+ *  1. Написать API
+ *  2. Реализовать стор
+ *  3. Реализовать экшены
+ *  4. Реализовать редюсер
+ */
+
 function App() {
-  const data: ITicket[] = [
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const data2: ITicket[] = [
     {
       price: 82735,
       carrier: 'SU',
@@ -62,7 +71,7 @@ function App() {
             <button type="button">Самый быстрый</button>
             <button type="button">Оптимальный</button>
           </div>
-          <TicketList tickets={data} />
+          <TicketList />
         </div>
       </section>
     </div>

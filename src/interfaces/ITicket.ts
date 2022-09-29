@@ -32,3 +32,8 @@ export interface ITicket {
     }
   ]
 }
+
+export interface IResponseTickets {
+  tickets: ITicket[]
+  stop: boolean
+}
