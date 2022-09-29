@@ -39,3 +39,6 @@ export const getTickets = (searchId: string, shownTickets: number) => {
     }
   }
 }
+
+export const checkBox = (name: string) => ({ type: AviasalesActionTypes.CHECK_BOX, payload: name })
+export const checkBoxAll = () => ({ type: AviasalesActionTypes.CHECK_BOX_ALL })

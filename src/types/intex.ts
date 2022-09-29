@@ -4,7 +4,7 @@ export interface AviasalesState {
   error: null | string
   tickets: any[]
   shownTickets: number
-  filter: string
+  checkboxes: any[]
 }
 
 export enum AviasalesActionTypes {
@@ -12,6 +12,8 @@ export enum AviasalesActionTypes {
   GET_TICKETS = 'GET_TICKETS',
   FETCHING = 'FETCHING',
   ERROR = 'ERROR',
+  CHECK_BOX = 'CHECK_BOX',
+  CHECK_BOX_ALL = 'CHECK_BOX_ALL',
 }
 
 interface FetchAction {
@@ -33,4 +35,13 @@ interface ErrorAction {
   payload: string
 }
 
-export type AviasalesAction = FetchAction | GetSearchIdAction | GetTicketsAction | ErrorAction
+interface CheckBox {
+  type: AviasalesActionTypes.CHECK_BOX
+  payload: string
+}
+
+interface CheckBoxAll {
+  type: AviasalesActionTypes.CHECK_BOX_ALL
+}
+
+export type AviasalesAction = FetchAction | GetSearchIdAction | GetTicketsAction | ErrorAction | CheckBox | CheckBoxAll
