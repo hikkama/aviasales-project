@@ -12,6 +12,8 @@ import { ITicket } from '../../types'
 
 import styles from './App.module.scss'
 
+// Todo: PropTypes, отображение цены
+
 const App: FC = () => {
   const { getTickets, getSearchId, showMoreTickets } = useActions()
   const { tickets, searchId, checkboxes, sort, loading, shownTickets, error } = useTypedSelector((state) => state)

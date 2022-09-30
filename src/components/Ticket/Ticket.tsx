@@ -43,7 +43,7 @@ const Ticket: FC<TicketProps> = ({ ticket }) => {
       <div className={styles['ticket-card__header']}>
         <div className={styles['ticket-card__price']}>{`${price} ₽`}</div>
         <div className={styles['ticket-card__aircompany']}>
-          <img src={`https://pics.avs.io/200/200/${carrier}.png`} alt="airlines" />
+          <img src={`https://pics.avs.io/110/36/${carrier}.png`} alt="airlines" />
         </div>
       </div>
       <div className={styles.routes}>{routes}</div>
