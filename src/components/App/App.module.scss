@@ -12,10 +12,18 @@
   @include medium {
     padding: 50px 20px;
   }
+
+  @include small {
+    padding: 10px 20px;
+  }
 }
 
 .logo {
   margin-bottom: 50px;
+
+  @include small {
+    margin-bottom: 15px;
+  }
   img {
     margin: auto;
     display: block;

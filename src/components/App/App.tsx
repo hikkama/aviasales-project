@@ -33,7 +33,7 @@ const App: FC = () => {
     { name: 'fast', label: 'Самый быстрый' },
     { name: 'optimal', label: 'Оптимальный' },
   ]
-  console.log(error)
+
   return (
     <div className={styles.container}>
       <div className={styles.logo}>
