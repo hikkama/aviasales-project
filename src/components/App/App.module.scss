@@ -1,0 +1,123 @@
+// Imports
+@import '../../styles/mixins';
+@import '../../styles/variables';
+// ===
+
+.container {
+  max-width: 755px;
+
+  margin: 0 auto;
+  padding: 50px 0;
+
+  @include medium {
+    padding: 50px 20px;
+  }
+}
+
+.logo {
+  margin-bottom: 50px;
+  img {
+    margin: auto;
+    display: block;
+    width: 60px;
+  }
+}
+
+.main {
+  display: flex;
+
+  @include small {
+    display: block;
+  }
+
+  &__filter {
+    flex-basis: 30%;
+    margin-right: 20px;
+    padding: 20px 0;
+    height: 100%;
+
+    color: $dark-text;
+    background-color: #fff;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+
+    @include medium {
+      flex-basis: 40%;
+    }
+
+    @include small {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+  }
+
+  &__content {
+    flex-basis: 502px;
+  }
+}
+
+.content {
+  &__tabs {
+    display: flex;
+  }
+
+  &__tab {
+    flex-grow: 1;
+    border: 1px solid #dfe5ec;
+    background-color: #fff;
+    color: $dark-text;
+
+    &:first-child {
+      -webkit-border-radius: 5px 0 0 5px;
+      -moz-border-radius: 5px 0 0 5px;
+      border-radius: 5px 0 0 5px;
+      border-right: none;
+    }
+    &:last-child {
+      -webkit-border-radius: 0 5px 5px 0;
+      -moz-border-radius: 0 5px 5px 0;
+      border-radius: 0 5px 5px 0;
+      border-left: none;
+    }
+
+    &:hover,
+    &:focus,
+    &.content__tab--active {
+      background-color: $primary-color;
+      color: #fff;
+    }
+  }
+
+  &__info {
+    margin-top: 20px;
+  }
+
+  &__show-more {
+    margin-top: 20px;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    background: $primary-color;
+    color: #fff;
+
+    &:hover,
+    &:focus {
+      background-color: darken($primary-color, 8%);
+    }
+  }
+}
+
+.btn {
+  display: block;
+
+  padding: 15px;
+
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+
+  cursor: pointer;
+
+  transition: all 0.2s linear;
+}

@@ -2,26 +2,6 @@
 @import '../../styles/mixins';
 
 .filter {
-  flex-basis: 30%;
-  margin-right: 20px;
-  padding: 20px 0;
-  height: 100%;
-
-  color: $dark-text;
-  background-color: #fff;
-
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-
-  @include medium {
-    flex-basis: 40%;
-  }
-
-  @include small {
-    margin-right: 0;
-    margin-bottom: 20px;
-  }
-
   &-title {
     font-weight: 600;
     text-transform: uppercase;

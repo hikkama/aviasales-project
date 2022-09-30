@@ -1,4 +1,4 @@
-import { AviasalesAction, AviasalesActionTypes, AviasalesState } from '../../types/intex'
+import { AviasalesAction, AviasalesActionTypes, AviasalesState } from '../../types'
 
 const initialState: AviasalesState = {
   searchId: null,
@@ -6,19 +6,20 @@ const initialState: AviasalesState = {
   error: null,
   tickets: [],
   shownTickets: 5,
-  checkboxes: ['no'],
+  checkboxes: ['no', 'one', 'two', 'three'],
+  sort: 'cheap',
 }
 
 export const aviasalesReducer = (state = initialState, action: AviasalesAction): AviasalesState => {
   switch (action.type) {
-    case AviasalesActionTypes.FETCHING:
-      return { ...state, loading: true }
+    case AviasalesActionTypes.LOADING:
+      return { ...state, loading: action.payload }
 
     case AviasalesActionTypes.GET_SEARCH_ID:
-      return { ...state, searchId: action.payload, loading: false }
+      return { ...state, searchId: action.payload }
 
     case AviasalesActionTypes.GET_TICKETS:
-      return { ...state, tickets: action.payload, loading: false }
+      return { ...state, tickets: [...state.tickets, ...action.payload] }
 
     case AviasalesActionTypes.ERROR:
       return { ...state, error: action.payload, loading: false }
@@ -42,6 +43,19 @@ export const aviasalesReducer = (state = initialState, action: AviasalesAction):
             ? []
             : ['no', 'one', 'two', 'three'],
       }
+
+    case AviasalesActionTypes.SHOW_MORE_TICKETS:
+      return {
+        ...state,
+        shownTickets: state.shownTickets + 5,
+      }
+
+    case AviasalesActionTypes.CHANGE_SORT:
+      return {
+        ...state,
+        sort: action.payload,
+      }
+
     default:
       return state
   }

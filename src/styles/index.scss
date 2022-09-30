@@ -1,7 +1,6 @@
 // Imports
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
 @import 'normalize.css';
-@import 'mixins';
 @import 'variables.scss';
 // ===
 
@@ -12,6 +11,8 @@ html {
 *:before,
 *:after {
   box-sizing: inherit;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -21,84 +22,4 @@ body {
   font-size: $fz;
 
   background-color: #f3f7fa;
-}
-
-.container {
-  max-width: 754px;
-
-  margin: 0 auto;
-  padding: 50px 0;
-
-  @include medium {
-    padding: 50px 20px;
-  }
-}
-
-.logo {
-  margin-bottom: 50px;
-  img {
-    margin: auto;
-    display: block;
-    width: 60px;
-  }
-}
-
-.wrapper {
-  display: flex;
-
-  @include small {
-    display: block;
-  }
-}
-
-.main-content {
-  flex-basis: 502px;
-}
-
-.fligth-card {
-  margin-top: 20px;
-  font-weight: 600;
-  background-color: #fff;
-  padding: 20px 20px 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-}
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  position: relative;
-}
-
-.card-info {
-  display: flex;
-  justify-content: space-between;
-  padding-right: 50px;
-}
-
-.card-aircompany {
-  position: absolute;
-  right: 0;
-
-  img {
-    width: 70px;
-  }
-}
-
-.card-price {
-  color: $primary-color;
-  font-size: $fz * 2;
-}
-
-.card-title {
-  color: #a0b0b9;
-  text-transform: uppercase;
-}
-
-.card-desc {
-  font-size: $fz + 2;
-  color: $dark-text;
-  margin-bottom: 10px;
 }

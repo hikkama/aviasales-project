@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { ITicket } from '../../interfaces/ITicket'
+import { ITicket } from '../../types'
 import { formatDuration, getDestinationTime, getFormulation, getTime } from '../../utils/time'
 
 import styles from './Ticket.module.scss'

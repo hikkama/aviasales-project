@@ -1,20 +1,16 @@
-/*eslint-disable @typescript-eslint/no-unused-vars*/
-
 import { ChangeEvent, FC } from 'react'
 import { connect } from 'react-redux'
 
-import { AviasalesState } from '../../types/intex'
-import * as AviasalesActionCreators from '../../store/action-creators'
+import { AviasalesState } from '../../types'
+import { useActions } from '../../hooks/useActions'
 
 import './Filter.scss'
 
 interface FilterProps {
   checkboxes: any[]
-  checkBox: any
-  checkBoxAll: any
 }
 
-const Filter: FC<FilterProps> = ({ checkboxes, checkBox, checkBoxAll }) => {
+const Filter: FC<FilterProps> = ({ checkboxes }) => {
   const checkboxesRender = [
     { name: 'all', label: 'Все' },
     { name: 'no', label: 'Без пересадок' },
@@ -22,6 +18,8 @@ const Filter: FC<FilterProps> = ({ checkboxes, checkBox, checkBoxAll }) => {
     { name: 'two', label: '2 пересадки' },
     { name: 'three', label: '3 пересадки' },
   ]
+
+  const { checkBox, checkBoxAll } = useActions()
 
   const isAllChecked =
     checkboxes.includes('no') &&
@@ -68,4 +66,4 @@ const Filter: FC<FilterProps> = ({ checkboxes, checkBox, checkBoxAll }) => {
 
 const mapStateToProps = (state: AviasalesState) => ({ checkboxes: state.checkboxes })
 
-export default connect(mapStateToProps, AviasalesActionCreators)(Filter)
+export default connect(mapStateToProps)(Filter)

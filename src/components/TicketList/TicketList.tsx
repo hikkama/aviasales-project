@@ -1,31 +1,21 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import { useTypedSelector } from '../../hooks/useTypedSelector'
 import Ticket from '../Ticket'
-import { ITicket } from '../../interfaces/ITicket'
-import { useActions } from '../../hooks/useActions'
+import { ITicket } from '../../types'
 
-const TicketList: React.FC = () => {
-  const { tickets, loading, error, searchId, shownTickets } = useTypedSelector((state) => state)
-  const { getTickets, getSearchId } = useActions()
+interface TicketListProps {
+  tickets: ITicket[]
+}
 
-  useEffect(() => {
-    getSearchId()
-  }, [])
-
-  useEffect(() => {
-    if (!searchId) return
-
-    getTickets(searchId, shownTickets)
-  }, [searchId])
+const TicketList: React.FC<TicketListProps> = ({ tickets }) => {
+  const { shownTickets } = useTypedSelector((state) => state)
 
   return (
-    <div className="flightes">
-      {loading && <h1>Идет загрузка</h1>}
-      {error && <h1>{error}</h1>}
-
-      {tickets.map((ticket: ITicket) => {
-        return <Ticket ticket={ticket} key={ticket.price} />
+    <div className="flights">
+      {tickets?.map((ticket: ITicket, i) => {
+        if (i >= shownTickets) return
+        return <Ticket ticket={ticket} key={`${ticket.price}-${i}`} />
       })}
     </div>
   )
