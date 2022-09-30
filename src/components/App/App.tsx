@@ -12,12 +12,6 @@ import { ITicket } from '../../types'
 
 import styles from './App.module.scss'
 
-/*
- * https://github.com/NickDobrynin/aviasales/blob/main/src/components/App/App.jsx
- * https://github.com/phoenix666rises/aviasales
- * https://github.com/nishmann/aviasales/blob/main/src/utils/filterTicket.ts
- */
-
 const App: FC = () => {
   const { getTickets, getSearchId, showMoreTickets } = useActions()
   const { tickets, searchId, checkboxes, sort, loading, shownTickets, error } = useTypedSelector((state) => state)
