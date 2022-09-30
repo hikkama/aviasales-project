@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { AviasalesState } from '../../types'
 import { useActions } from '../../hooks/useActions'
 
-import './Filter.scss'
+import styles from './Filter.module.scss'
 
 interface FilterProps {
   checkboxes: any[]
@@ -34,28 +34,34 @@ const Filter: FC<FilterProps> = ({ checkboxes }) => {
 
   return (
     <>
-      <h3 className="filter-title">Количество пересадок</h3>
+      <h3 className={styles.filter__title}>Количество пересадок</h3>
       {checkboxesRender.map(({ name, label }) => {
         if (name === 'all') {
           return (
-            <label key={name}>
-              <input type="checkbox" className="input" value={name} onChange={checkBoxAll} checked={isAllChecked} />
-              <span className="checkbox"></span>
+            <label className={styles.filter__label} key={name}>
+              <input
+                type="checkbox"
+                className={styles.filter__input}
+                value={name}
+                onChange={checkBoxAll}
+                checked={isAllChecked}
+              />
+              <span className={styles.filter__checkbox}></span>
               {label}
             </label>
           )
         }
 
         return (
-          <label key={name}>
+          <label className={styles.filter__label} key={name}>
             <input
               type="checkbox"
-              className="input"
+              className={styles.filter__input}
               value={name}
               onChange={onChange}
               checked={checkboxes.includes(name)}
             />
-            <span className="checkbox"></span>
+            <span className={styles.filter__checkbox}></span>
             {label}
           </label>
         )
