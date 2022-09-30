@@ -5,6 +5,7 @@ import { useActions } from '../../hooks/useActions'
 import { useTypedSelector } from '../../hooks/useTypedSelector'
 import { filterTickets, sortTickets } from '../../utils/filters'
 import Filter from '../Filter/Filter'
+import Tabs from '../Tabs'
 import TicketList from '../TicketList'
 import logo from '../../assets/img/logo.svg'
 import { ITicket } from '../../types'
@@ -18,7 +19,7 @@ import styles from './App.module.scss'
  */
 
 const App: FC = () => {
-  const { getTickets, getSearchId, showMoreTickets, changeSort } = useActions()
+  const { getTickets, getSearchId, showMoreTickets } = useActions()
   const { tickets, searchId, checkboxes, sort, loading, shownTickets } = useTypedSelector((state) => state)
 
   useEffect(() => {
@@ -44,28 +45,15 @@ const App: FC = () => {
       <div className={styles.logo}>
         <img src={logo} alt="Logo" />
       </div>
+
       <main className={styles.main}>
         <aside className={`${styles.main__filter} filter`}>
           <Filter />
         </aside>
+
         <section className={`${styles.main__content} content`}>
-          <div className={styles.content__tabs}>
-            {buttons.map(({ label, name }) => {
-              const isActive = name === sort
-              return (
-                <button
-                  key={name}
-                  type="button"
-                  className={`
-                    ${styles.content__tab} ${styles.btn} ${isActive && styles['content__tab--active']}
-                   `}
-                  onClick={() => changeSort(name)}
-                >
-                  {label}
-                </button>
-              )
-            })}
-          </div>
+          <Tabs buttons={buttons} />
+
           <div className={styles.content__info}>
             {loading && <BarLoader color="#168cec" width="100%" />}
             {!showedTickets.length && !loading && <h2>Рейсов, подходящих под заданные фильтры, не найдено</h2>}

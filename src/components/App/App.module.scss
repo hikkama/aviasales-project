@@ -58,56 +58,6 @@
 }
 
 .content {
-  &__tabs {
-    display: flex;
-
-    @include small {
-      flex-wrap: wrap;
-    }
-  }
-
-  &__tab {
-    flex-grow: 1;
-    border: 1px solid #dfe5ec;
-    background-color: #fff;
-    color: $dark-text;
-
-    @include small {
-      margin-bottom: 10px;
-    }
-
-
-    &:first-child {
-      -webkit-border-radius: 5px 0 0 5px;
-      -moz-border-radius: 5px 0 0 5px;
-      border-radius: 5px 0 0 5px;
-      border-right: none;
-
-      @include small {
-        border-radius: 5px;
-        border: 1px solid #dfe5ec;
-      }
-    }
-    &:last-child {
-      -webkit-border-radius: 0 5px 5px 0;
-      -moz-border-radius: 0 5px 5px 0;
-      border-radius: 0 5px 5px 0;
-      border-left: none;
-
-      @include small {
-        border-radius: 5px;
-        border: 1px solid #dfe5ec;
-      }
-    }
-
-    &:hover,
-    &:focus,
-    &.content__tab--active {
-      background-color: $primary-color;
-      color: #fff;
-    }
-  }
-
   &__info {
     margin-top: 20px;
   }
