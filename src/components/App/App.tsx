@@ -20,7 +20,7 @@ import styles from './App.module.scss'
 
 const App: FC = () => {
   const { getTickets, getSearchId, showMoreTickets } = useActions()
-  const { tickets, searchId, checkboxes, sort, loading, shownTickets } = useTypedSelector((state) => state)
+  const { tickets, searchId, checkboxes, sort, loading, shownTickets, error } = useTypedSelector((state) => state)
 
   useEffect(() => {
     getSearchId()
@@ -39,7 +39,7 @@ const App: FC = () => {
     { name: 'fast', label: 'Самый быстрый' },
     { name: 'optimal', label: 'Оптимальный' },
   ]
-
+  console.log(error)
   return (
     <div className={styles.container}>
       <div className={styles.logo}>
@@ -56,7 +56,10 @@ const App: FC = () => {
 
           <div className={styles.content__info}>
             {loading && <BarLoader color="#168cec" width="100%" />}
-            {!showedTickets.length && !loading && <h2>Рейсов, подходящих под заданные фильтры, не найдено</h2>}
+            {error && <h1>{error}</h1>}
+            {!showedTickets.length && !loading && !error && (
+              <h2>Рейсов, подходящих под заданные фильтры, не найдено</h2>
+            )}
           </div>
 
           <TicketList tickets={showedTickets} />

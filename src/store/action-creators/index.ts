@@ -17,7 +17,10 @@ export const getSearchId = () => {
       dispatch({ type: AviasalesActionTypes.GET_SEARCH_ID, payload: searchId })
       dispatch({ type: AviasalesActionTypes.LOADING, payload: false })
     } catch (e) {
-      dispatch({ type: AviasalesActionTypes.ERROR, payload: 'Возникла ошибка при загрузке' })
+      dispatch({
+        type: AviasalesActionTypes.ERROR,
+        payload: 'Возникла ошибка при загрузке, поробуйте обновить страницу',
+      })
     }
   }
 }
@@ -40,7 +43,11 @@ export const getTickets = (searchId: string) => (dispatch: Dispatch<AviasalesAct
       else dispatch({ type: AviasalesActionTypes.LOADING, payload: false })
     } catch (e: any) {
       if (e.message === 'Failed to fetch a ticket') await fetchData()
-      else dispatch({ type: AviasalesActionTypes.ERROR, payload: 'Возникла ошибка при загрузке' })
+      else
+        dispatch({
+          type: AviasalesActionTypes.ERROR,
+          payload: 'Возникла ошибка при загрузке, поробуйте обновить страницу',
+        })
     }
   })()
 }
