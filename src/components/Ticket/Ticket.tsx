@@ -1,7 +1,10 @@
 import { FC } from 'react'
 
+import Column from '../UI/Column'
+import Card from '../UI/Card'
 import { ITicket } from '../../types'
 import { formatDuration, getDestinationTime, getFormulation, getTime } from '../../utils/time'
+import formatPrice from '../../utils/price'
 
 import styles from './Ticket.module.scss'
 
@@ -18,37 +21,19 @@ const Ticket: FC<TicketProps> = ({ ticket }) => {
 
     return (
       <div key={key} className={styles.routesItem}>
-        <div className={styles.column}>
-          <div className={styles.caption}>
-            {route.origin} - {route.destination}
-          </div>
-          <div className={styles.value}>
-            {getTime(route.date)} - {getDestinationTime(route.date, route.duration)}
-          </div>
-        </div>
-        <div className={styles.column}>
-          <div className={styles.caption}>в пути</div>
-          <div className={styles.value}>{formatDuration(route.duration)}</div>
-        </div>
-        <div className={styles.column}>
-          <div className={styles.routes__caption}>{getFormulation(route.stops.length)}</div>
-          <div className={styles.value}>{[route.stops.join(', ')]}</div>
-        </div>
+        <Column
+          caption={{ left: route.origin, right: route.destination }}
+          value={{ left: getTime(route.date), right: getDestinationTime(route.date, route.duration) }}
+        />
+
+        <Column caption={{ left: 'в пути' }} value={{ left: formatDuration(route.duration) }} />
+
+        <Column caption={{ left: getFormulation(route.stops.length) }} value={{ left: route.stops.join(', ') }} />
       </div>
     )
   })
 
-  return (
-    <div className={styles.card}>
-      <div className={styles.header}>
-        <div className={styles.price}>{`${price} ₽`}</div>
-        <div>
-          <img src={`https://pics.avs.io/110/36/${carrier}.png`} alt="airlines" />
-        </div>
-      </div>
-      <div className={styles.routes}>{routes}</div>
-    </div>
-  )
+  return <Card price={formatPrice(price)} carrier={carrier} routes={routes} />
 }
 
 export default Ticket

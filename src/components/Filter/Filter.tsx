@@ -11,6 +11,8 @@ interface FilterProps {
 }
 
 const Filter: FC<FilterProps> = ({ checkboxes }) => {
+  const { checkBox, checkBoxAll } = useActions()
+
   const checkboxesRender = [
     { name: 'all', label: 'Все' },
     { name: 'no', label: 'Без пересадок' },
@@ -18,8 +20,6 @@ const Filter: FC<FilterProps> = ({ checkboxes }) => {
     { name: 'two', label: '2 пересадки' },
     { name: 'three', label: '3 пересадки' },
   ]
-
-  const { checkBox, checkBoxAll } = useActions()
 
   const isAllChecked =
     checkboxes.includes('no') &&
@@ -36,30 +36,14 @@ const Filter: FC<FilterProps> = ({ checkboxes }) => {
     <>
       <h3 className={styles.title}>Количество пересадок</h3>
       {checkboxesRender.map(({ name, label }) => {
-        if (name === 'all') {
-          return (
-            <label className={styles.label} key={name}>
-              <input
-                type="checkbox"
-                className={styles.input}
-                value={name}
-                onChange={checkBoxAll}
-                checked={isAllChecked}
-              />
-              <span className={styles.checkbox}></span>
-              {label}
-            </label>
-          )
-        }
-
         return (
           <label className={styles.label} key={name}>
             <input
               type="checkbox"
               className={styles.input}
               value={name}
-              onChange={onChange}
-              checked={checkboxes.includes(name)}
+              onChange={name === 'all' ? checkBoxAll : onChange}
+              checked={name === 'all' ? isAllChecked : checkboxes.includes(name)}
             />
             <span className={styles.checkbox}></span>
             {label}

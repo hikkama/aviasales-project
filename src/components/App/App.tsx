@@ -41,11 +41,11 @@ const App: FC = () => {
       </div>
 
       <main className={styles.main}>
-        <aside className={`${styles.filter} filter`}>
+        <aside className={styles.filter}>
           <Filter />
         </aside>
 
-        <section className={`${styles.content} content`}>
+        <section className={styles.content}>
           <Tabs buttons={buttons} />
 
           <div className={styles.info}>
@@ -59,7 +59,7 @@ const App: FC = () => {
           <TicketList tickets={showedTickets} />
 
           {!!showedTickets.length && !loading && shownTickets < showedTickets.length && (
-            <button type="button" className={`${styles.showMoreBtn}`} onClick={showMoreTickets}>
+            <button type="button" className={styles.showMoreBtn} onClick={showMoreTickets}>
               Показать еще 5 билетов!
             </button>
           )}
