@@ -34,34 +34,34 @@ const Filter: FC<FilterProps> = ({ checkboxes }) => {
 
   return (
     <>
-      <h3 className={styles.filter__title}>Количество пересадок</h3>
+      <h3 className={styles.title}>Количество пересадок</h3>
       {checkboxesRender.map(({ name, label }) => {
         if (name === 'all') {
           return (
-            <label className={styles.filter__label} key={name}>
+            <label className={styles.label} key={name}>
               <input
                 type="checkbox"
-                className={styles.filter__input}
+                className={styles.input}
                 value={name}
                 onChange={checkBoxAll}
                 checked={isAllChecked}
               />
-              <span className={styles.filter__checkbox}></span>
+              <span className={styles.checkbox}></span>
               {label}
             </label>
           )
         }
 
         return (
-          <label className={styles.filter__label} key={name}>
+          <label className={styles.label} key={name}>
             <input
               type="checkbox"
-              className={styles.filter__input}
+              className={styles.input}
               value={name}
               onChange={onChange}
               checked={checkboxes.includes(name)}
             />
-            <span className={styles.filter__checkbox}></span>
+            <span className={styles.checkbox}></span>
             {label}
           </label>
         )

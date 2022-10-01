@@ -41,14 +41,14 @@ const App: FC = () => {
       </div>
 
       <main className={styles.main}>
-        <aside className={`${styles.main__filter} filter`}>
+        <aside className={`${styles.filter} filter`}>
           <Filter />
         </aside>
 
-        <section className={`${styles.main__content} content`}>
+        <section className={`${styles.content} content`}>
           <Tabs buttons={buttons} />
 
-          <div className={styles.content__info}>
+          <div className={styles.info}>
             {loading && <BarLoader color="#168cec" width="100%" />}
             {error && <h1>{error}</h1>}
             {!showedTickets.length && !loading && !error && (
@@ -59,7 +59,7 @@ const App: FC = () => {
           <TicketList tickets={showedTickets} />
 
           {!!showedTickets.length && !loading && shownTickets < showedTickets.length && (
-            <button type="button" className={`${styles['content__show-more']} ${styles.btn}`} onClick={showMoreTickets}>
+            <button type="button" className={`${styles.showMoreBtn}`} onClick={showMoreTickets}>
               Показать еще 5 билетов!
             </button>
           )}

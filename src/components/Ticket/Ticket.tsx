@@ -17,32 +17,32 @@ const Ticket: FC<TicketProps> = ({ ticket }) => {
     const key = `${date.toString()}-${i}`
 
     return (
-      <div key={key} className={styles.routes__item}>
-        <div className={styles.routes__column}>
-          <div className={styles.routes__caption}>
+      <div key={key} className={styles.routesItem}>
+        <div className={styles.column}>
+          <div className={styles.caption}>
             {route.origin} - {route.destination}
           </div>
-          <div className={styles.routes__value}>
+          <div className={styles.value}>
             {getTime(route.date)} - {getDestinationTime(route.date, route.duration)}
           </div>
         </div>
-        <div className={styles.routes__column}>
-          <div className={styles.routes__caption}>в пути</div>
-          <div className={styles.routes__value}>{formatDuration(route.duration)}</div>
+        <div className={styles.column}>
+          <div className={styles.caption}>в пути</div>
+          <div className={styles.value}>{formatDuration(route.duration)}</div>
         </div>
-        <div className={styles.routes__column}>
+        <div className={styles.column}>
           <div className={styles.routes__caption}>{getFormulation(route.stops.length)}</div>
-          <div className={styles.routes__value}>{[route.stops.join(', ')]}</div>
+          <div className={styles.value}>{[route.stops.join(', ')]}</div>
         </div>
       </div>
     )
   })
 
   return (
-    <div className={styles['ticket-card']}>
-      <div className={styles['ticket-card__header']}>
-        <div className={styles['ticket-card__price']}>{`${price} ₽`}</div>
-        <div className={styles['ticket-card__aircompany']}>
+    <div className={styles.card}>
+      <div className={styles.header}>
+        <div className={styles.price}>{`${price} ₽`}</div>
+        <div>
           <img src={`https://pics.avs.io/110/36/${carrier}.png`} alt="airlines" />
         </div>
       </div>

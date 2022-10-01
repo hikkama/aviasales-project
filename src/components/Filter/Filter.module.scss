@@ -1,67 +1,57 @@
 @import '../../styles/variables';
 @import '../../styles/mixins';
 
-.filter {
-  &__title {
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: $fz;
-    margin: 0 0 20px 0;
-    padding-left: 20px;
+.title {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: $fz;
+  margin: 0 0 20px 0;
+  padding-left: 20px;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  font-size: $fz + 1;
+  padding: 10px 0 10px 50px;
+
+  @include medium {
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 
-  &__inputs {
-    @include small {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-    }
-  }
-
-  &__input {
-    position: absolute;
-    appearance: none;
-    -webkit-appearance: none;
-
-    &:checked + .filter__checkbox {
-      background-image: url('../../assets/img/checkbox-on.svg');
-    }
-
-    &:focus + .filter__checkbox {
-      width: 22px;
-      height: 22px;
-      background-image: url('../../assets/img/checkbox-focused.svg');
-    }
-
-    &:checked:focus + .filter__checkbox {
-      width: 22px;
-      height: 22px;
-      background-image: url('../../assets/img/checkbox-on-focused.svg');
-    }
-  }
-
-  &__label {
-    display: flex;
-    align-items: center;
-    font-size: $fz + 1;
-    padding: 10px 0 10px 50px;
-
-    @include medium {
-      flex-direction: row;
-      flex-wrap: wrap;
-    }
-  }
-
-  &__label:hover {
+  &:hover {
     background-color: #f1fcff;
     cursor: pointer;
   }
+}
 
-  &__checkbox {
-    position: absolute;
-    margin-left: -30px;
-    width: 20px;
-    height: 20px;
-    background-image: url('../../assets/img/checkbox-off.svg');
+.input {
+  position: absolute;
+  appearance: none;
+  -webkit-appearance: none;
+
+  &:checked + .checkbox {
+    background-image: url('../../assets/img/checkbox-on.svg');
   }
+
+  &:focus + .checkbox {
+    width: 22px;
+    height: 22px;
+    background-image: url('../../assets/img/checkbox-focused.svg');
+  }
+
+  &:checked:focus + .checkbox {
+    width: 22px;
+    height: 22px;
+    background-image: url('../../assets/img/checkbox-on-focused.svg');
+  }
+}
+
+.checkbox {
+  position: absolute;
+  margin-left: -30px;
+  width: 20px;
+  height: 20px;
+  background-image: url('../../assets/img/checkbox-off.svg');
 }

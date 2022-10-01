@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import classNames from 'classnames'
 
 import { useActions } from '../../hooks/useActions'
 import { useTypedSelector } from '../../hooks/useTypedSelector'
@@ -17,13 +18,10 @@ const Tabs: FC<TabsProps> = ({ buttons }) => {
     <div className={styles.tabs}>
       {buttons.map(({ label, name }) => {
         const isActive = name === sort
+        const btnClass = classNames(styles.tabItem, { [styles.tabActive]: isActive })
+
         return (
-          <button
-            key={name}
-            type="button"
-            className={`${styles.tabs__tab} ${styles.btn} ${isActive && styles['tab--active']}`}
-            onClick={() => changeSort(name)}
-          >
+          <button key={name} type="button" className={btnClass} onClick={() => changeSort(name)}>
             {label}
           </button>
         )

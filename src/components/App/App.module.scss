@@ -31,59 +31,44 @@
   }
 }
 
+.filter {
+  flex-basis: 30%;
+  margin-right: 20px;
+  padding: 20px 0;
+  height: 100%;
+
+  color: $dark-text;
+  background-color: #fff;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+
+  @include medium {
+    flex-basis: 40%;
+  }
+
+  @include small {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}
+
 .main {
   display: flex;
 
   @include small {
     display: block;
   }
-
-  &__filter {
-    flex-basis: 30%;
-    margin-right: 20px;
-    padding: 20px 0;
-    height: 100%;
-
-    color: $dark-text;
-    background-color: #fff;
-
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-
-    @include medium {
-      flex-basis: 40%;
-    }
-
-    @include small {
-      margin-right: 0;
-      margin-bottom: 20px;
-    }
-  }
-
-  &__content {
-    flex-basis: 502px;
-  }
 }
 
 .content {
-  &__info {
-    margin-top: 20px;
-  }
-
-  &__show-more {
-    margin-top: 20px;
-    width: 100%;
-    border-radius: 5px;
-    border: none;
-    background: $primary-color;
-    color: #fff;
-
-    &:hover,
-    &:focus {
-      background-color: darken($primary-color, 8%);
-    }
-  }
+  flex-basis: 502px;
 }
+
+.info {
+  margin-top: 20px;
+}
+
 
 .btn {
   display: block;
@@ -97,4 +82,19 @@
   cursor: pointer;
 
   transition: all 0.2s linear;
+}
+
+.showMoreBtn {
+  margin-top: 20px;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  background: $primary-color;
+  color: #fff;
+  composes: btn;
+
+  &:hover,
+  &:focus {
+    background-color: darken($primary-color, 8%);
+  }
 }
