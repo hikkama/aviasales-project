@@ -28,17 +28,18 @@ export const aviasalesReducer = (state = initialState, action: AviasalesAction):
       return {
         ...state,
         checkboxes:
+          // prettier-ignore
           state.checkboxes.includes(action.payload) || state.checkboxes.includes(CheckboxTypes.All)
             ? state.checkboxes.filter((el) => {
-                if (el === 'all') {
-                  return false
-                } else {
-                  return el !== action.payload
-                }
-              })
+              if (el === 'all') {
+                return false
+              } else {
+                return el !== action.payload
+              }
+            })
             : state.checkboxes.length === 3 && !state.checkboxes.includes(CheckboxTypes.All)
-            ? [...state.checkboxes, action.payload, CheckboxTypes.All]
-            : [...state.checkboxes, action.payload],
+              ? [...state.checkboxes, action.payload, CheckboxTypes.All]
+              : [...state.checkboxes, action.payload],
       }
 
     case AviasalesActionTypes.CHECK_BOX_ALL:
