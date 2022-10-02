@@ -7,7 +7,7 @@ import { useTypedSelector } from '../../hooks/useTypedSelector'
 import styles from './Tabs.module.scss'
 
 interface TabsProps {
-  buttons: { name: string; label: string }[]
+  buttons: { type: string; label: string }[]
 }
 
 const Tabs: FC<TabsProps> = ({ buttons }) => {
@@ -16,12 +16,16 @@ const Tabs: FC<TabsProps> = ({ buttons }) => {
 
   return (
     <div className={styles.tabs}>
-      {buttons.map(({ label, name }) => {
-        const isActive = name === sort
-        const btnClass = classNames(styles.tabItem, { [styles.tabActive]: isActive })
+      {buttons.map(({ label, type }) => {
+        const isActive = type === sort
 
         return (
-          <button key={name} type="button" className={btnClass} onClick={() => changeSort(name)}>
+          <button
+            key={type}
+            type="button"
+            className={classNames(styles.tabItem, { [styles.tabActive]: isActive })}
+            onClick={() => changeSort(type)}
+          >
             {label}
           </button>
         )

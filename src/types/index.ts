@@ -1,4 +1,4 @@
-export interface ITicket {
+export interface TicketData {
   price: number
   carrier: string
   segments: [
@@ -19,8 +19,8 @@ export interface ITicket {
   ]
 }
 
-export interface IResponseTickets {
-  tickets: ITicket[]
+export interface ResponseTicketsData {
+  tickets: TicketData[]
   stop: boolean
 }
 
@@ -30,8 +30,8 @@ export interface AviasalesState {
   error: null | string
   tickets: any[]
   shownTickets: number
-  checkboxes: any[]
-  sort: string
+  checkboxes: CheckboxTypes[]
+  sort: SortTypes
 }
 
 export enum AviasalesActionTypes {
@@ -43,6 +43,20 @@ export enum AviasalesActionTypes {
   CHECK_BOX_ALL = 'CHECK_BOX_ALL',
   SHOW_MORE_TICKETS = 'SHOW_MORE_TICKETS',
   CHANGE_SORT = 'CHANGE_SORT',
+}
+
+export enum SortTypes {
+  Cheap = 'cheap',
+  Fast = 'fast',
+  Optimal = 'optimal',
+}
+
+export enum CheckboxTypes {
+  All = 'all',
+  No = 'no',
+  One = 'one',
+  Two = 'two',
+  Three = 'three',
 }
 
 interface LoadingAction {
@@ -67,7 +81,7 @@ interface ErrorAction {
 
 interface CheckBox {
   type: AviasalesActionTypes.CHECK_BOX
-  payload: string
+  payload: CheckboxTypes
 }
 
 interface CheckBoxAll {
@@ -80,7 +94,7 @@ interface ShowMoreTickets {
 
 interface ChangeSort {
   type: AviasalesActionTypes.CHANGE_SORT
-  payload: string
+  payload: SortTypes
 }
 
 export type AviasalesAction =

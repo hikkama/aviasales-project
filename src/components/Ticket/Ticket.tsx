@@ -1,15 +1,15 @@
 import { FC } from 'react'
 
-import Column from '../UI/Column'
-import Card from '../UI/Card'
-import { ITicket } from '../../types'
+import { TicketData } from '../../types'
 import { formatDuration, getDestinationTime, getFormulation, getTime } from '../../utils/time'
 import formatPrice from '../../utils/price'
 
+import Column from './Column'
+import Card from './Card'
 import styles from './Ticket.module.scss'
 
 interface TicketProps {
-  ticket: ITicket
+  ticket: TicketData
 }
 
 const Ticket: FC<TicketProps> = ({ ticket }) => {

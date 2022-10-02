@@ -8,7 +8,7 @@ import Filter from '../Filter/Filter'
 import Tabs from '../Tabs'
 import TicketList from '../TicketList'
 import logo from '../../assets/img/logo.svg'
-import { ITicket } from '../../types'
+import { SortTypes, TicketData } from '../../types'
 
 import styles from './App.module.scss'
 
@@ -26,12 +26,12 @@ const App: FC = () => {
     getTickets(searchId)
   }, [searchId])
 
-  const showedTickets: ITicket[] = sortTickets(filterTickets(tickets, checkboxes), sort)
+  const showedTickets: TicketData[] = sortTickets(filterTickets(tickets, checkboxes), sort)
 
-  const buttons: { name: string; label: string }[] = [
-    { name: 'cheap', label: 'Самый дешевый' },
-    { name: 'fast', label: 'Самый быстрый' },
-    { name: 'optimal', label: 'Оптимальный' },
+  const buttons: { type: string; label: string }[] = [
+    { type: SortTypes.Cheap, label: 'Самый дешевый' },
+    { type: SortTypes.Fast, label: 'Самый быстрый' },
+    { type: SortTypes.Optimal, label: 'Оптимальный' },
   ]
 
   return (
@@ -40,19 +40,19 @@ const App: FC = () => {
         <img src={logo} alt="Logo" />
       </div>
 
-      <main className={styles.main}>
+      <div className={styles.wrapper}>
         <aside className={styles.filter}>
           <Filter />
         </aside>
 
-        <section className={styles.content}>
+        <main className={styles.main}>
           <Tabs buttons={buttons} />
 
           <div className={styles.info}>
             {loading && <BarLoader color="#168cec" width="100%" />}
             {error && <h1>{error}</h1>}
             {!showedTickets.length && !loading && !error && (
-              <h2>Рейсов, подходящих под заданные фильтры, не найдено</h2>
+              <p className={styles.warning}>Рейсов, подходящих под заданные фильтры, не найдено</p>
             )}
           </div>
 
@@ -63,8 +63,8 @@ const App: FC = () => {
               Показать еще 5 билетов!
             </button>
           )}
-        </section>
-      </main>
+        </main>
+      </div>
     </div>
   )
 }

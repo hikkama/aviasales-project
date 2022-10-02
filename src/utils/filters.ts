@@ -1,4 +1,4 @@
-import { ITicket } from '../types/'
+import { TicketData } from '../types/'
 
 enum CheckboxesEnum {
   no,
@@ -9,8 +9,8 @@ enum CheckboxesEnum {
 
 declare type CheckboxType = keyof typeof CheckboxesEnum
 
-export const filterTickets = (tickets: ITicket[], checkboxes: string[]): ITicket[] => {
-  const returnedArr: ITicket[] = []
+export const filterTickets = (tickets: TicketData[], checkboxes: string[]): TicketData[] => {
+  const returnedArr: TicketData[] = []
   checkboxes.forEach((filter: string) => {
     const filteredTickets = tickets.filter((ticket) => {
       const [first] = ticket.segments
@@ -23,7 +23,7 @@ export const filterTickets = (tickets: ITicket[], checkboxes: string[]): ITicket
   return returnedArr
 }
 
-export const sortTickets = (tickets: ITicket[] | [], sort: string): ITicket[] => {
+export const sortTickets = (tickets: TicketData[] | [], sort: string): TicketData[] => {
   switch (sort) {
     case 'cheap':
       return tickets.sort((a, b) => +a.price - +b.price)

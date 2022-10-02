@@ -1,4 +1,4 @@
-import { AviasalesAction, AviasalesActionTypes, AviasalesState } from '../../types'
+import { AviasalesAction, AviasalesActionTypes, AviasalesState, CheckboxTypes, SortTypes } from '../../types'
 
 const initialState: AviasalesState = {
   searchId: null,
@@ -6,8 +6,8 @@ const initialState: AviasalesState = {
   error: null,
   tickets: [],
   shownTickets: 5,
-  checkboxes: ['no', 'one', 'two', 'three'],
-  sort: 'cheap',
+  checkboxes: [CheckboxTypes.No, CheckboxTypes.One, CheckboxTypes.Two, CheckboxTypes.Three],
+  sort: SortTypes.Cheap,
 }
 
 export const aviasalesReducer = (state = initialState, action: AviasalesAction): AviasalesState => {
@@ -36,12 +36,12 @@ export const aviasalesReducer = (state = initialState, action: AviasalesAction):
       return {
         ...state,
         checkboxes:
-          state.checkboxes.includes('no') &&
-          state.checkboxes.includes('one') &&
-          state.checkboxes.includes('two') &&
-          state.checkboxes.includes('three')
+          state.checkboxes.includes(CheckboxTypes.No) &&
+          state.checkboxes.includes(CheckboxTypes.One) &&
+          state.checkboxes.includes(CheckboxTypes.Two) &&
+          state.checkboxes.includes(CheckboxTypes.Three)
             ? []
-            : ['no', 'one', 'two', 'three'],
+            : [CheckboxTypes.No, CheckboxTypes.One, CheckboxTypes.Two, CheckboxTypes.Three],
       }
 
     case AviasalesActionTypes.SHOW_MORE_TICKETS:

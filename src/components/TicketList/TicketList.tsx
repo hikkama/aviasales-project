@@ -2,10 +2,10 @@ import React from 'react'
 
 import { useTypedSelector } from '../../hooks/useTypedSelector'
 import Ticket from '../Ticket'
-import { ITicket } from '../../types'
+import { TicketData } from '../../types'
 
 interface TicketListProps {
-  tickets: ITicket[]
+  tickets: TicketData[]
 }
 
 const TicketList: React.FC<TicketListProps> = ({ tickets }) => {
@@ -13,7 +13,7 @@ const TicketList: React.FC<TicketListProps> = ({ tickets }) => {
 
   return (
     <div className="flights">
-      {tickets?.map((ticket: ITicket, i) => {
+      {tickets?.map((ticket: TicketData, i) => {
         if (i >= shownTickets) return
         return <Ticket ticket={ticket} key={`${ticket.price}-${i}`} />
       })}

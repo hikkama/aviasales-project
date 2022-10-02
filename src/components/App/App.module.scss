@@ -53,7 +53,7 @@
   }
 }
 
-.main {
+.wrapper {
   display: flex;
 
   @include small {
@@ -61,7 +61,7 @@
   }
 }
 
-.content {
+.main {
   flex-basis: 502px;
 }
 
@@ -96,4 +96,10 @@
   &:focus {
     background-color: darken($primary-color, 8%);
   }
+}
+
+.warning {
+  font-size: $fz + 4;
+  padding: 10px 20px;
+  background-color: lightgoldenrodyellow;
 }

@@ -1,7 +1,7 @@
 import { ChangeEvent, FC } from 'react'
 import { connect } from 'react-redux'
 
-import { AviasalesState } from '../../types'
+import { AviasalesState, CheckboxTypes } from '../../types'
 import { useActions } from '../../hooks/useActions'
 
 import styles from './Filter.module.scss'
@@ -14,11 +14,11 @@ const Filter: FC<FilterProps> = ({ checkboxes }) => {
   const { checkBox, checkBoxAll } = useActions()
 
   const checkboxesRender = [
-    { name: 'all', label: 'Все' },
-    { name: 'no', label: 'Без пересадок' },
-    { name: 'one', label: '1 пересадка' },
-    { name: 'two', label: '2 пересадки' },
-    { name: 'three', label: '3 пересадки' },
+    { name: CheckboxTypes.All, label: 'Все' },
+    { name: CheckboxTypes.No, label: 'Без пересадок' },
+    { name: CheckboxTypes.One, label: '1 пересадка' },
+    { name: CheckboxTypes.Two, label: '2 пересадки' },
+    { name: CheckboxTypes.Three, label: '3 пересадки' },
   ]
 
   const isAllChecked =

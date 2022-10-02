@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux'
 
-import { AviasalesAction, AviasalesActionTypes, IResponseTickets } from '../../types'
+import { AviasalesAction, AviasalesActionTypes, ResponseTicketsData } from '../../types'
 
 const apiBase = 'https://front-test.dev.aviasales.ru/'
 
@@ -36,7 +36,7 @@ export const getTickets = (searchId: string) => (dispatch: Dispatch<AviasalesAct
         }
       }
 
-      const body: IResponseTickets = await response.json()
+      const body: ResponseTicketsData = await response.json()
       dispatch({ type: AviasalesActionTypes.GET_TICKETS, payload: body.tickets })
 
       if (!body.stop) await fetchData()
