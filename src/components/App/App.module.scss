@@ -7,7 +7,7 @@
   max-width: 755px;
 
   margin: 0 auto;
-  padding: 50px 0;
+  padding: 50px 0 0;
 
   @include medium {
     padding: 50px 20px;
@@ -62,11 +62,31 @@
 }
 
 .main {
+  overflow-y: scroll;
   flex-basis: 502px;
+  padding-bottom: 20px;
+  padding-right: 10px;
+
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+    margin-left: 20px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: $primary-color;
+    -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+  }
+}
+
+
+
+.tabWrapper {
+  margin-bottom: 20px;
 }
 
 .info {
-  margin-top: 20px;
+  position: absolute;
 }
 
 .btn {

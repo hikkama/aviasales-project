@@ -9,13 +9,22 @@ import Tabs from '../Tabs'
 import TicketList from '../TicketList'
 import logo from '../../assets/img/logo.svg'
 import { SortTypes, TicketData } from '../../types'
+import { calaculateMaxHeight } from '../../utils/calaculateMaxHeight'
 
 import styles from './App.module.scss'
+
+/* TODO
+ *   1. Сделать блок info абсолютным - DONE
+ *   2. Маргины задать для табс(точнее для внешнего блока), сделать  - DONE
+ *   3. Сделать логику по фильтрам в самом редюсере - Done
+ *   4. Сделать скролл только для билетов
+ *   5. Попробовать вынести весь fetching в класс
+ */
 
 const App: FC = () => {
   const { getTickets, getSearchId, showMoreTickets } = useActions()
   const { tickets, searchId, checkboxes, sort, loading, shownTickets, error } = useTypedSelector((state) => state)
-
+  let height = calaculateMaxHeight()
   useEffect(() => {
     getSearchId()
   }, [])
@@ -45,16 +54,19 @@ const App: FC = () => {
           <Filter />
         </aside>
 
-        <main className={styles.main}>
-          <Tabs buttons={buttons} />
+        <main className={styles.main} style={{ height }}>
+          <div className={styles.tabWrapper}>
+            <Tabs buttons={buttons} />
+          </div>
 
           <div className={styles.info}>
-            {loading && <BarLoader color="#168cec" width="100%" />}
-            {error && <h1>{error}</h1>}
+            {error && <div>{error}</div>}
             {!showedTickets.length && !loading && !error && (
-              <p className={styles.warning}>Рейсов, подходящих под заданные фильтры, не найдено</p>
+              <div className={styles.warning}>Рейсов, подходящих под заданные фильтры, не найдено</div>
             )}
           </div>
+
+          {loading && <BarLoader color="#168cec" width="100%" />}
 
           <TicketList tickets={showedTickets} />
 

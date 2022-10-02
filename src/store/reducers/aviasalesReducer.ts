@@ -6,7 +6,7 @@ const initialState: AviasalesState = {
   error: null,
   tickets: [],
   shownTickets: 5,
-  checkboxes: [CheckboxTypes.No, CheckboxTypes.One, CheckboxTypes.Two, CheckboxTypes.Three],
+  checkboxes: [CheckboxTypes.All, CheckboxTypes.No, CheckboxTypes.One, CheckboxTypes.Two, CheckboxTypes.Three],
   sort: SortTypes.Cheap,
 }
 
@@ -27,21 +27,26 @@ export const aviasalesReducer = (state = initialState, action: AviasalesAction):
     case AviasalesActionTypes.CHECK_BOX:
       return {
         ...state,
-        checkboxes: state.checkboxes.includes(action.payload)
-          ? state.checkboxes.filter((el) => el !== action.payload)
-          : [...state.checkboxes, action.payload],
+        checkboxes:
+          state.checkboxes.includes(action.payload) || state.checkboxes.includes(CheckboxTypes.All)
+            ? state.checkboxes.filter((el) => {
+                if (el === 'all') {
+                  return false
+                } else {
+                  return el !== action.payload
+                }
+              })
+            : state.checkboxes.length === 3 && !state.checkboxes.includes(CheckboxTypes.All)
+            ? [...state.checkboxes, action.payload, CheckboxTypes.All]
+            : [...state.checkboxes, action.payload],
       }
 
     case AviasalesActionTypes.CHECK_BOX_ALL:
       return {
         ...state,
-        checkboxes:
-          state.checkboxes.includes(CheckboxTypes.No) &&
-          state.checkboxes.includes(CheckboxTypes.One) &&
-          state.checkboxes.includes(CheckboxTypes.Two) &&
-          state.checkboxes.includes(CheckboxTypes.Three)
-            ? []
-            : [CheckboxTypes.No, CheckboxTypes.One, CheckboxTypes.Two, CheckboxTypes.Three],
+        checkboxes: state.checkboxes.includes(CheckboxTypes.All)
+          ? []
+          : [CheckboxTypes.All, CheckboxTypes.No, CheckboxTypes.One, CheckboxTypes.Two, CheckboxTypes.Three],
       }
 
     case AviasalesActionTypes.SHOW_MORE_TICKETS:

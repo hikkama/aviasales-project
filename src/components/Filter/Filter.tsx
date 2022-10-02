@@ -1,3 +1,5 @@
+/*eslint-disable @typescript-eslint/no-unused-vars */
+
 import { ChangeEvent, FC } from 'react'
 import { connect } from 'react-redux'
 
@@ -21,12 +23,6 @@ const Filter: FC<FilterProps> = ({ checkboxes }) => {
     { name: CheckboxTypes.Three, label: '3 пересадки' },
   ]
 
-  const isAllChecked =
-    checkboxes.includes('no') &&
-    checkboxes.includes('one') &&
-    checkboxes.includes('two') &&
-    checkboxes.includes('three')
-
   const onChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const value = e.target.value
     checkBox(value)
@@ -43,7 +39,7 @@ const Filter: FC<FilterProps> = ({ checkboxes }) => {
               className={styles.input}
               value={name}
               onChange={name === 'all' ? checkBoxAll : onChange}
-              checked={name === 'all' ? isAllChecked : checkboxes.includes(name)}
+              checked={checkboxes.includes(name)}
             />
             <span className={styles.checkbox}></span>
             {label}
