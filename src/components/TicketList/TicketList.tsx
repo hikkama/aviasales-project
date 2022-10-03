@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 
 import { useTypedSelector } from '../../hooks/useTypedSelector'
 import Ticket from '../Ticket'
@@ -14,10 +14,15 @@ interface TicketListProps {
 
 const TicketList: FC<TicketListProps> = ({ tickets }) => {
   const { shownTickets, loading } = useTypedSelector((state) => state)
-  const { showMoreTickets } = useActions()
+  const { showMoreTickets, putTicketDiv } = useActions()
   const [height, setHeight] = useState(calculateMaxHeight())
+  const ref = useRef()
 
   useEffect(() => {
+    if (ref.current) {
+      putTicketDiv(ref.current)
+    }
+
     const resizeListener = () => {
       setHeight(calculateMaxHeight())
     }
@@ -28,7 +33,8 @@ const TicketList: FC<TicketListProps> = ({ tickets }) => {
   }, [])
 
   return (
-    <div className={styles.flights} style={{ maxHeight: height }}>
+    // @ts-ignore
+    <div ref={ref} className={styles.flights} style={{ maxHeight: height }}>
       <ul className={styles.list}>
         {tickets?.map((ticket: TicketData, i) => {
           if (i >= shownTickets) return

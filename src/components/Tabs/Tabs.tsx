@@ -11,7 +11,7 @@ interface TabsProps {
 
 const Tabs: FC<TabsProps> = ({ buttons }) => {
   const { changeSort } = useActions()
-  const { sort } = useTypedSelector((state) => state)
+  const { sort, ticketHtmlBlock } = useTypedSelector((state) => state)
 
   return (
     <div className={styles.tabs}>
@@ -19,20 +19,23 @@ const Tabs: FC<TabsProps> = ({ buttons }) => {
         const isActive = type === sort
 
         return (
-          <>
+          <label key={type} className={styles.label}>
             <input
               type="radio"
-              id={type}
               name="radio"
               checked={isActive}
               className={styles.radio}
-              onChange={() => changeSort(type)}
+              onChange={() => {
+                changeSort(type)
+                ticketHtmlBlock?.scrollTo({
+                  top: 0,
+                  left: 0,
+                  behavior: 'smooth',
+                })
+              }}
             />
-
-            <label key={type} className={styles.tabItem} htmlFor={type}>
-              {label}
-            </label>
-          </>
+            <span className={styles.radioBtn}>{label}</span>
+          </label>
         )
       })}
     </div>

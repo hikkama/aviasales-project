@@ -32,6 +32,7 @@ export interface AviasalesState {
   shownTickets: number
   checkboxes: CheckboxTypes[]
   sort: SortTypes
+  ticketHtmlBlock: null | HTMLElement
 }
 
 export enum AviasalesActionTypes {
@@ -43,6 +44,7 @@ export enum AviasalesActionTypes {
   CHECK_BOX_ALL = 'CHECK_BOX_ALL',
   SHOW_MORE_TICKETS = 'SHOW_MORE_TICKETS',
   CHANGE_SORT = 'CHANGE_SORT',
+  GET_TICKETS_HTML_BLOCK = 'GET_TICKETS_HTML_BLOCK',
 }
 
 export enum SortTypes {
@@ -97,6 +99,11 @@ interface ChangeSort {
   payload: SortTypes
 }
 
+interface GetTicketsHtmlBlock {
+  type: AviasalesActionTypes.GET_TICKETS_HTML_BLOCK
+  payload: HTMLElement
+}
+
 export type AviasalesAction =
   | LoadingAction
   | GetSearchIdAction
@@ -106,3 +113,4 @@ export type AviasalesAction =
   | CheckBoxAll
   | ShowMoreTickets
   | ChangeSort
+  | GetTicketsHtmlBlock
