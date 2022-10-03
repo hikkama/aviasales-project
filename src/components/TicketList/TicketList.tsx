@@ -16,7 +16,7 @@ const TicketList: FC<TicketListProps> = ({ tickets }) => {
   const { shownTickets, loading } = useTypedSelector((state) => state)
   const { showMoreTickets, putTicketDiv } = useActions()
   const [height, setHeight] = useState(calculateMaxHeight())
-  const ref = useRef()
+  const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (ref.current) {
@@ -33,7 +33,6 @@ const TicketList: FC<TicketListProps> = ({ tickets }) => {
   }, [])
 
   return (
-    // @ts-ignore
     <div ref={ref} className={styles.flights} style={{ maxHeight: height }}>
       <ul className={styles.list}>
         {tickets?.map((ticket: TicketData, i) => {
