@@ -1,4 +1,5 @@
 @import '../../styles/variables';
+@import '../../styles/mixins';
 
 .flights {
   overflow-y: scroll;
@@ -14,6 +15,12 @@
     border-radius: 4px;
     background-color: $primary-color;
     -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+  }
+
+  @include small {
+    overflow-y: initial;
+    padding: 0;
+    max-height: initial;
   }
 }
 

@@ -57,7 +57,7 @@ const App: FC = () => {
             )}
           </div>
 
-          {loading && <BarLoader color="#168cec" width="100%" />}
+          {loading && <BarLoader color="#168cec" width="100%" cssOverride={{ marginBottom: 20 }} />}
 
           <TicketList tickets={showedTickets} />
         </main>
