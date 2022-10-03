@@ -19,8 +19,8 @@
 
   @include small {
     overflow-y: initial;
-    padding: 0;
-    max-height: initial;
+    padding: 0 0 20px 0;
+    max-height: initial !important;
   }
 }
 
