@@ -11,7 +11,13 @@ import logo from '../../assets/img/logo.svg'
 import { SortTypes, TicketData } from '../../types'
 
 import styles from './App.module.scss'
-
+/*
+  Todo:
+    1. вынести логику по фильтру вне обьекта в отдельную функцию \/
+    2. Сделать табы как чекбоксы в фильтрах + добавить фокус
+    3. Сделать плавный скролл
+    4. При нажатии на таб или фильтр надо чтобы скролл наверх поднимался (свойство скрола изменять нужно поставить его в 0)
+ */
 const App: FC = () => {
   const { getTickets, getSearchId } = useActions()
   const { tickets, searchId, checkboxes, sort, loading, error } = useTypedSelector((state) => state)

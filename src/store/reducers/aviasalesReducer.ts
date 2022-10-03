@@ -1,4 +1,5 @@
 import { AviasalesAction, AviasalesActionTypes, AviasalesState, CheckboxTypes, SortTypes } from '../../types'
+import { checkBoxFunction } from '../../utils/checkBoxLogic'
 
 const initialState: AviasalesState = {
   searchId: null,
@@ -27,19 +28,7 @@ export const aviasalesReducer = (state = initialState, action: AviasalesAction):
     case AviasalesActionTypes.CHECK_BOX:
       return {
         ...state,
-        checkboxes:
-          // prettier-ignore
-          state.checkboxes.includes(action.payload) || state.checkboxes.includes(CheckboxTypes.All)
-            ? state.checkboxes.filter((el) => {
-              if (el === 'all') {
-                return false
-              } else {
-                return el !== action.payload
-              }
-            })
-            : state.checkboxes.length === 3 && !state.checkboxes.includes(CheckboxTypes.All)
-              ? [...state.checkboxes, action.payload, CheckboxTypes.All]
-              : [...state.checkboxes, action.payload],
+        checkboxes: checkBoxFunction(state.checkboxes, action.payload),
       }
 
     case AviasalesActionTypes.CHECK_BOX_ALL:
