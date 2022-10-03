@@ -10,7 +10,7 @@ interface CardProps {
 
 const Card: FC<CardProps> = ({ price, carrier, routes }) => {
   return (
-    <div className={styles.card}>
+    <li className={styles.card}>
       <div className={styles.header}>
         <div className={styles.price}>{`${price} ₽`}</div>
         <div>
@@ -18,7 +18,7 @@ const Card: FC<CardProps> = ({ price, carrier, routes }) => {
         </div>
       </div>
       <div className={styles.routes}>{routes}</div>
-    </div>
+    </li>
   )
 }
 

@@ -29,10 +29,12 @@ const TicketList: FC<TicketListProps> = ({ tickets }) => {
 
   return (
     <div className={styles.flights} style={{ maxHeight: height }}>
-      {tickets?.map((ticket: TicketData, i) => {
-        if (i >= shownTickets) return
-        return <Ticket ticket={ticket} key={`${ticket.price}-${i}`} />
-      })}
+      <ul>
+        {tickets?.map((ticket: TicketData, i) => {
+          if (i >= shownTickets) return
+          return <Ticket ticket={ticket} key={`${ticket.price}-${i}`} />
+        })}
+      </ul>
       {!!tickets.length && !loading && shownTickets < tickets.length && (
         <button type="button" className={styles.showMoreBtn} onClick={showMoreTickets}>
           Показать еще 5 билетов!
