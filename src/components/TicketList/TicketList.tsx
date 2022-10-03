@@ -29,7 +29,7 @@ const TicketList: FC<TicketListProps> = ({ tickets }) => {
 
   return (
     <div className={styles.flights} style={{ maxHeight: height }}>
-      <ul>
+      <ul className={styles.list}>
         {tickets?.map((ticket: TicketData, i) => {
           if (i >= shownTickets) return
           return <Ticket ticket={ticket} key={`${ticket.price}-${i}`} />
