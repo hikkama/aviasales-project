@@ -11,6 +11,7 @@
 
 .label {
   flex-grow: 1;
+  position: relative;
   &:first-child .radioBtn {
     -webkit-border-radius: 5px 0 0 5px;
     -moz-border-radius: 5px 0 0 5px;
@@ -51,7 +52,7 @@
     color: #fff;
   }
 
-  &:focus + .radioBtn {
+  &:focus-visible + .radioBtn {
     border: 1px solid #ff9707;
   }
 }
@@ -67,3 +68,5 @@
     margin-bottom: 10px;
   }
 }
+
+
