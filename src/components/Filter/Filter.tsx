@@ -1,9 +1,8 @@
-import { ChangeEvent, FC, useEffect } from 'react'
+import { ChangeEvent, FC } from 'react'
 import { connect } from 'react-redux'
 
 import { AviasalesState, CheckboxTypes } from '../../types'
 import { useActions } from '../../hooks/useActions'
-import { useTypedSelector } from '../../hooks/useTypedSelector'
 
 import styles from './Filter.module.scss'
 
@@ -13,7 +12,6 @@ interface FilterProps {
 
 const Filter: FC<FilterProps> = ({ checkboxes }) => {
   const { checkBox, checkBoxAll } = useActions()
-  const { ticketHtmlBlock } = useTypedSelector((state) => state)
 
   const checkboxesRender = [
     { name: CheckboxTypes.All, label: 'Все' },
@@ -22,14 +20,6 @@ const Filter: FC<FilterProps> = ({ checkboxes }) => {
     { name: CheckboxTypes.Two, label: '2 пересадки' },
     { name: CheckboxTypes.Three, label: '3 пересадки' },
   ]
-
-  useEffect(() => {
-    ticketHtmlBlock?.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    })
-  }, [checkboxes])
 
   const onChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const value = e.target.value

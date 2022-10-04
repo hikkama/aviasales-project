@@ -13,16 +13,12 @@ interface TicketListProps {
 }
 
 const TicketList: FC<TicketListProps> = ({ tickets }) => {
-  const { shownTickets, loading } = useTypedSelector((state) => state)
-  const { showMoreTickets, putTicketDiv } = useActions()
+  const { shownTickets, loading, sort, checkboxes } = useTypedSelector((state) => state)
+  const { showMoreTickets } = useActions()
   const [height, setHeight] = useState(calculateMaxHeight())
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (ref.current) {
-      putTicketDiv(ref.current)
-    }
-
     const resizeListener = () => {
       setHeight(calculateMaxHeight())
     }
@@ -31,6 +27,16 @@ const TicketList: FC<TicketListProps> = ({ tickets }) => {
 
     return () => window.removeEventListener('resize', resizeListener)
   }, [])
+
+  useEffect(() => {
+    if (!ref.current) return
+
+    ref.current.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    })
+  }, [sort, checkboxes])
 
   return (
     <div ref={ref} className={styles.flights} style={{ maxHeight: height }}>

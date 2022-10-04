@@ -59,7 +59,3 @@ export const checkBoxAll = () => ({ type: AviasalesActionTypes.CHECK_BOX_ALL })
 export const showMoreTickets = () => ({ type: AviasalesActionTypes.SHOW_MORE_TICKETS })
 
 export const changeSort = (sort: string) => ({ type: AviasalesActionTypes.CHANGE_SORT, payload: sort })
-export const putTicketDiv = (div: HTMLDivElement) => ({
-  type: AviasalesActionTypes.GET_TICKETS_HTML_BLOCK,
-  payload: div,
-})

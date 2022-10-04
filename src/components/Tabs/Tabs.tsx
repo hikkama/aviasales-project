@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 
 import { useActions } from '../../hooks/useActions'
 import { useTypedSelector } from '../../hooks/useTypedSelector'
@@ -11,15 +11,7 @@ interface TabsProps {
 
 const Tabs: FC<TabsProps> = ({ buttons }) => {
   const { changeSort } = useActions()
-  const { sort, ticketHtmlBlock } = useTypedSelector((state) => state)
-
-  useEffect(() => {
-    ticketHtmlBlock?.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    })
-  }, [sort])
+  const { sort } = useTypedSelector((state) => state)
 
   return (
     <div className={styles.tabs}>

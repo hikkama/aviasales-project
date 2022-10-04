@@ -9,7 +9,6 @@ const initialState: AviasalesState = {
   shownTickets: 5,
   checkboxes: [CheckboxTypes.All, CheckboxTypes.No, CheckboxTypes.One, CheckboxTypes.Two, CheckboxTypes.Three],
   sort: SortTypes.Cheap,
-  ticketHtmlBlock: null,
 }
 
 export const aviasalesReducer = (state = initialState, action: AviasalesAction): AviasalesState => {
@@ -50,12 +49,6 @@ export const aviasalesReducer = (state = initialState, action: AviasalesAction):
       return {
         ...state,
         sort: action.payload,
-      }
-
-    case AviasalesActionTypes.GET_TICKETS_HTML_BLOCK:
-      return {
-        ...state,
-        ticketHtmlBlock: action.payload,
       }
 
     default:
