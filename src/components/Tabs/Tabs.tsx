@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 
 import { useActions } from '../../hooks/useActions'
 import { useTypedSelector } from '../../hooks/useTypedSelector'
@@ -12,6 +12,14 @@ interface TabsProps {
 const Tabs: FC<TabsProps> = ({ buttons }) => {
   const { changeSort } = useActions()
   const { sort, ticketHtmlBlock } = useTypedSelector((state) => state)
+
+  useEffect(() => {
+    ticketHtmlBlock?.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    })
+  }, [sort])
 
   return (
     <div className={styles.tabs}>
@@ -27,11 +35,6 @@ const Tabs: FC<TabsProps> = ({ buttons }) => {
               className={styles.radio}
               onChange={() => {
                 changeSort(type)
-                ticketHtmlBlock?.scrollTo({
-                  top: 0,
-                  left: 0,
-                  behavior: 'smooth',
-                })
               }}
             />
             <span className={styles.radioBtn}>{label}</span>
