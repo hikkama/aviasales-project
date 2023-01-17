@@ -2,7 +2,7 @@ import { Dispatch } from 'redux'
 
 import { AviasalesAction, AviasalesActionTypes, ResponseTicketsData } from '../../types'
 
-const apiBase = 'https://front-test.dev.aviasales.ru/'
+const apiBase = 'https://aviasales-test-api.kata.academy/search'
 
 export const getSearchId = () => {
   return async (dispatch: Dispatch<AviasalesAction>) => {
